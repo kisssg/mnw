@@ -1,0 +1,40 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+
+<body>
+<form action=search.php method=post target=search_result>
+	<input type=submit>
+	<table width=98%>
+		<tr>
+			<td width=60%>
+				<textarea id=sql name=sql style='margin:0;padding:0;width:100%' rows=20></textarea>
+			</td>
+			<td>
+				<iframe src=tables.php width=100% height=100%></iframe>	
+			</td>
+		</tr>
+	</table>
+</form>
+<script language=javascript>
+function do_export(){
+	var sql = document.getElementById('sql');
+	var sql_export = document.getElementById('sql_export');
+	sql_export.value = sql.value;
+	document.getElementById('form_export').submit();
+}
+</script>
+<form action=export.php method=post target=_blank id=form_export>
+	<input type=hidden id=sql_export name=sql_export>
+	<input type=button value=导出 onclick=do_export(); >
+</form>
+<script language=javascript>
+function changeHeight(){
+	var f = document.getElementById('search_result');
+	f.height = ( f.document ? f.document.body.scrollHeight : f.contentDocument.body.offsetHeight )+50; 
+}
+</script>
+<iframe id=search_result name=search_result onload=changeHeight() width=98% style='overflow-x:scroll;overflow-y:hidden;'></iframe>
+
+</body>
